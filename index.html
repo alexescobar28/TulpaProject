@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Cata Sensorial Tulpa</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="styles/styles.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Pantalla de Inicio -->
+      <div
+        class="screen active"
+        id="screen-intro"
+      >
+        <div class="screen-content">
+          <div class="intro-chocolate"></div>
+          <h1 class="intro-text">
+            Imagina que estás con alguien que conoce el alma del chocolate...
+          </h1>
+        </div>
+        <button
+          class="button"
+          onclick="nextScreen()"
+        >
+          Comenzar Cata Sensorial
+        </button>
+      </div>
+
+      <!-- Paso 1: Mira y siente -->
+      <div
+        class="screen light"
+        id="screen-step1"
+      >
+        <div class="screen-content">
+          <div class="step-number">Paso 1</div>
+          <h2>Mira y siente</h2>
+          <div class="chocolate-image">
+            <img
+              src="./assets/images/paso1-image.webp"
+              alt="Paso 1"
+            />
+          </div>
+          <p>
+            Míralo bien… la tableta te habla antes de probarla. Observa su
+            color, uniforme y profundo, que te susurra la riqueza del cacao
+            ecuatoriano. Pasa tus dedos por su superficie, siente esa textura
+            limpia, con un brillo sutil: es la promesa de un chocolate bien
+            cuidado.
+          </p>
+        </div>
+        <div class="navigation-container">
+          <button
+            class="nav-button"
+            onclick="previousScreen()"
+            id="prevBtn1"
+          >
+            ←
+          </button>
+          <button
+            class="button main-button"
+            onclick="nextScreen()"
+          >
+            Siguiente
+          </button>
+        </div>
+      </div>
+
+      <!-- Paso 2: Déjalo contar su historia en aroma -->
+      <div
+        class="screen light"
+        id="screen-step2"
+      >
+        <div class="screen-content">
+          <div class="step-number">Paso 2</div>
+          <h2>Déjalo contar su historia en aroma</h2>
+          <div class="chocolate-image">
+            <img
+              src="./assets/images/paso2-image.png"
+              alt="Paso 2"
+            />
+          </div>
+          <p>
+            Acércalo a tu nariz. Respira lento... Lo notas! Ese aroma a cacao
+            tostado con notas de tierra húmeda y trufa seca es un rastro de su
+            origen: árboles cuidados por manos honestas, fermentado con
+            paciencia, secado al sol. Ahí está su historia, viva, auténtica,
+            honesta.
+          </p>
+        </div>
+        <div class="navigation-container">
+          <button
+            class="nav-button"
+            onclick="previousScreen()"
+            id="prevBtn2"
+          >
+            ←
+          </button>
+          <button
+            class="button main-button"
+            onclick="nextScreen()"
+          >
+            Ya lo olí
+          </button>
+        </div>
+      </div>
+      <!-- Paso 3: EL quiebre, el ritual  -->
+      <div
+        class="screen light"
+        id="screen-step3"
+      >
+        <div class="screen-content">
+          <div class="step-number">Paso 3</div>
+          <h2>EL quiebre, el ritual</h2>
+          <div class="chocolate-image">
+            <img
+              src="./assets/images/paso3-image.png"
+              alt="Paso 3"
+            />
+          </div>
+          <p>
+            Tómalo entre los dedos y parte un trozo. Escucha ese ‘clac’ nítido:
+            es señal de un buen templado, hecho con dedicación. No es solo
+            sonido: es el eco del respeto por un proceso ancestral.
+          </p>
+        </div>
+        <div class="navigation-container">
+          <button
+            class="nav-button"
+            onclick="previousScreen()"
+            id="prevBtn2"
+          >
+            ←
+          </button>
+          <button
+            class="button main-button"
+            onclick="nextScreen()"
+          >
+            Ya lo partí
+          </button>
+        </div>
+      </div>
+      <!-- Paso 4: El primer contacto -->
+      <div
+        class="screen light"
+        id="screen-step4"
+      >
+        <div class="screen-content">
+          <div class="step-number">Paso 4</div>
+          <h2>El primer contacto</h2>
+          <div class="chocolate-image">
+            <img
+              src="./assets/images/paso4-image.png"
+              alt="Paso 4"
+            />
+          </div>
+          <p>
+            Ponlo sobre tu lengua… no mastiques aún. Deja que tu cuerpo lo
+            reciba. Siente cómo se derrite lentamente, liberando notas sutiles:
+            frutos rojos, madera, tal vez un destello floral. No hay prisa. Así
+            como los productores no corren cuando cosechan, tú tampoco tienes
+            que correr ahora.
+          </p>
+        </div>
+        <div class="navigation-container">
+          <button
+            class="nav-button"
+            onclick="previousScreen()"
+            id="prevBtn4"
+          >
+            ←
+          </button>
+          <button
+            class="button main-button"
+            onclick="nextScreen()"
+          >
+            Lo saboreé
+          </button>
+        </div>
+      </div>
+
+      <!-- Paso 5: Siente su esencia -->
+      <div
+        class="screen light"
+        id="screen-step5"
+      >
+        <div class="screen-content">
+          <div class="step-number">Paso 5</div>
+          <h2>Siente su esencia</h2>
+          <div class="chocolate-image">
+            <img
+              src="./assets/images/paso5.webp"
+              alt="Paso 4"
+            />
+          </div>
+          <p>
+            Ahora sí: déjate llevar. Ese retrogusto que permanece en tu paladar
+            es lo que conecta a todos: a ti, al agricultor, al chocolatero. No
+            es solo chocolate. Es gratitud, es tierra, es justicia fundida en
+            cada bocado. Eso es Tulpa. Y tú eres parte de ello.
+          </p>
+        </div>
+        <button
+          class="button"
+          onclick="restartExperience()"
+        >
+          Finalizar Cata
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let currentScreen = 0;
+      const screens = [
+        'screen-intro',
+        'screen-step1',
+        'screen-step2',
+        'screen-step3',
+        'screen-step4',
+        'screen-step5',
+      ];
+      // Arreglo de rutas o datos base64 para sonidos únicos por pantalla
+      const screenSounds = [
+        new Audio('../assets/sounds/intro.mp3'),
+        new Audio('../assets/sounds/start.mp3'),
+        new Audio('../assets/sounds/paso2.mp3'),
+        new Audio('../assets/sounds/paso3.mp3'),
+        new Audio('../assets/sounds/paso4.mp3'),
+        new Audio('../assets/sounds/paso5.mp3'),
+        // Agrega más audios según la cantidad de pantallas
+      ];
+
+      function playClickSound(index) {
+        const sound = screenSounds[index];
+        if (!sound) return;
+        sound.currentTime = 0;
+        sound.play().catch(() => {
+          console.log('Audio no disponible');
+        });
+      }
+
+      function showScreen(screenId) {
+        // Ocultar todas las pantallas
+        screens.forEach((id) => {
+          const screen = document.getElementById(id);
+          screen.classList.remove('active');
+        });
+
+        // Mostrar la pantalla seleccionada
+        setTimeout(() => {
+          document.getElementById(screenId).classList.add('active');
+        }, 250);
+      }
+
+      function nextScreen() {
+        if (currentScreen < screens.length - 1) {
+          currentScreen++;
+          showScreen(screens[currentScreen]);
+          playClickSound(currentScreen);
+        }
+      }
+
+      function restartExperience() {
+        /*         if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+        } */
+        currentScreen = -1;
+        showScreen(screens[currentScreen]);
+        playClickSound(currentScreen);
+      }
+      function previousScreen() {
+        if (currentScreen > 0) {
+          currentScreen--;
+          showScreen(screens[currentScreen]);
+          playClickSound(currentScreen);
+        }
+      }
+
+      // Agregar soporte para navegación con teclado
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowRight' || event.key === ' ') {
+          if (currentScreen < screens.length - 1) {
+            nextScreen();
+          } else {
+            restartExperience();
+          }
+        } else if (event.key === 'ArrowLeft') {
+          if (currentScreen > 0) {
+            playClickSound();
+            currentScreen--;
+            showScreen(screens[currentScreen]);
+          }
+        }
+      });
+
+      // Soporte para gestos táctiles en móviles
+      let startX = 0;
+      let startY = 0;
+
+      document.addEventListener('touchstart', function (event) {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+      });
+
+      document.addEventListener('touchend', function (event) {
+        if (!startX || !startY) return;
+
+        let endX = event.changedTouches[0].clientX;
+        let endY = event.changedTouches[0].clientY;
+
+        let diffX = startX - endX;
+        let diffY = startY - endY;
+
+        // Solo procesar swipes horizontales
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+          if (diffX > 0) {
+            // Swipe left - next screen
+            if (currentScreen < screens.length - 1) {
+              nextScreen();
+            }
+          } else {
+            // Swipe right - previous screen
+            if (currentScreen > 0) {
+              playClickSound();
+              currentScreen--;
+              showScreen(screens[currentScreen]);
+            }
+          }
+        }
+
+        startX = 0;
+        startY = 0;
+      });
+    </script>
+  </body>
+</html>
