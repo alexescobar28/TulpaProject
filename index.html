@@ -15,6 +15,64 @@
       rel="stylesheet"
       href="styles/styles.css"
     />
+    <style>
+      .audio-button {
+        background: #8b4513;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        cursor: pointer;
+        margin: 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .audio-button:hover {
+        background: #a0522d;
+        transform: scale(1.1);
+      }
+
+      .audio-button:active {
+        transform: scale(0.95);
+      }
+
+      .audio-button.playing {
+        background: #cd853f;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .audio-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+      }
+
+      .audio-label {
+        font-size: 14px;
+        color: #666;
+        margin-top: 8px;
+        font-family: 'Crimson Text', serif;
+      }
+    </style>
   </head>
   <body>
     <div class="app-container">
@@ -58,6 +116,16 @@
             limpia, con un brillo sutil: es la promesa de un chocolate bien
             cuidado.
           </p>
+          <div class="audio-controls">
+            <button
+              class="audio-button"
+              onclick="toggleAudio(1)"
+              id="audioBtn1"
+            >
+              ▶️
+            </button>
+            <div class="audio-label">Escuchar paso 1</div>
+          </div>
         </div>
         <div class="navigation-container">
           <button
@@ -97,6 +165,16 @@
             paciencia, secado al sol. Ahí está su historia, viva, auténtica,
             honesta.
           </p>
+          <div class="audio-controls">
+            <button
+              class="audio-button"
+              onclick="toggleAudio(2)"
+              id="audioBtn2"
+            >
+              ▶️
+            </button>
+            <div class="audio-label">Escuchar paso 2</div>
+          </div>
         </div>
         <div class="navigation-container">
           <button
@@ -129,16 +207,26 @@
             />
           </div>
           <p>
-            Tómalo entre los dedos y parte un trozo. Escucha ese ‘clac’ nítido:
+            Tómalo entre los dedos y parte un trozo. Escucha ese 'clac' nítido:
             es señal de un buen templado, hecho con dedicación. No es solo
             sonido: es el eco del respeto por un proceso ancestral.
           </p>
+          <div class="audio-controls">
+            <button
+              class="audio-button"
+              onclick="toggleAudio(3)"
+              id="audioBtn3"
+            >
+              ▶️
+            </button>
+            <div class="audio-label">Escuchar paso 3</div>
+          </div>
         </div>
         <div class="navigation-container">
           <button
             class="nav-button"
             onclick="previousScreen()"
-            id="prevBtn2"
+            id="prevBtn3"
           >
             ←
           </button>
@@ -171,6 +259,16 @@
             como los productores no corren cuando cosechan, tú tampoco tienes
             que correr ahora.
           </p>
+          <div class="audio-controls">
+            <button
+              class="audio-button"
+              onclick="toggleAudio(4)"
+              id="audioBtn4"
+            >
+              ▶️
+            </button>
+            <div class="audio-label">Escuchar paso 4</div>
+          </div>
         </div>
         <div class="navigation-container">
           <button
@@ -200,7 +298,7 @@
           <div class="chocolate-image">
             <img
               src="./assets/images/paso5.webp"
-              alt="Paso 4"
+              alt="Paso 5"
             />
           </div>
           <p>
@@ -209,6 +307,16 @@
             es solo chocolate. Es gratitud, es tierra, es justicia fundida en
             cada bocado. Eso es Tulpa. Y tú eres parte de ello.
           </p>
+          <div class="audio-controls">
+            <button
+              class="audio-button"
+              onclick="toggleAudio(5)"
+              id="audioBtn5"
+            >
+              ▶️
+            </button>
+            <div class="audio-label">Escuchar paso 5</div>
+          </div>
         </div>
         <button
           class="button"
@@ -221,6 +329,8 @@
 
     <script>
       let currentScreen = 0;
+      let currentAudio = null;
+
       const screens = [
         'screen-intro',
         'screen-step1',
@@ -229,6 +339,7 @@
         'screen-step4',
         'screen-step5',
       ];
+
       // Arreglo de rutas o datos base64 para sonidos únicos por pantalla
       const screenSounds = [
         new Audio('assets/sounds/intro.mp3'),
@@ -237,19 +348,71 @@
         new Audio('assets/sounds/paso3.mp3'),
         new Audio('assets/sounds/paso4.mp3'),
         new Audio('assets/sounds/paso5.mp3'),
-        // Agrega más audios según la cantidad de pantallas
       ];
 
-      function playClickSound(index) {
+      function toggleAudio(index) {
         const sound = screenSounds[index];
+        const button = document.getElementById(`audioBtn${index}`);
+
         if (!sound) return;
+
+        // Si es el mismo audio que está reproduciéndose, pausarlo
+        if (currentAudio === sound && !sound.paused) {
+          sound.pause();
+          button.textContent = '▶️';
+          button.classList.remove('playing');
+          return;
+        }
+
+        // Si hay otro audio reproduciéndose, pararlo
+        if (currentAudio && !currentAudio.paused && currentAudio !== sound) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+          resetAllAudioButtons();
+        }
+
+        // Reproducir el audio
+        currentAudio = sound;
         sound.currentTime = 0;
-        sound.play().catch(() => {
-          console.log('Audio no disponible');
+
+        sound
+          .play()
+          .then(() => {
+            button.textContent = '⏸️';
+            button.classList.add('playing');
+          })
+          .catch(() => {
+            console.log('Audio no disponible');
+            button.textContent = '❌';
+          });
+
+        // Cuando termine el audio, resetear el botón
+        sound.addEventListener('ended', () => {
+          button.textContent = '▶️';
+          button.classList.remove('playing');
+          currentAudio = null;
         });
       }
 
+      function resetAllAudioButtons() {
+        for (let i = 0; i < screenSounds.length; i++) {
+          const button = document.getElementById(`audioBtn${i}`);
+          if (button) {
+            button.textContent = '▶️';
+            button.classList.remove('playing');
+          }
+        }
+      }
+
       function showScreen(screenId) {
+        // Pausar cualquier audio que esté reproduciéndose
+        if (currentAudio && !currentAudio.paused) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+          resetAllAudioButtons();
+          currentAudio = null;
+        }
+
         // Ocultar todas las pantallas
         screens.forEach((id) => {
           const screen = document.getElementById(id);
@@ -266,24 +429,18 @@
         if (currentScreen < screens.length - 1) {
           currentScreen++;
           showScreen(screens[currentScreen]);
-          playClickSound(currentScreen);
         }
       }
 
       function restartExperience() {
-        /*         if (currentAudio) {
-          currentAudio.pause();
-          currentAudio.currentTime = 0;
-        } */
-        currentScreen = -1;
+        currentScreen = 0;
         showScreen(screens[currentScreen]);
-        playClickSound(currentScreen);
       }
+
       function previousScreen() {
         if (currentScreen > 0) {
           currentScreen--;
           showScreen(screens[currentScreen]);
-          playClickSound(currentScreen);
         }
       }
 
@@ -297,7 +454,6 @@
           }
         } else if (event.key === 'ArrowLeft') {
           if (currentScreen > 0) {
-            playClickSound();
             currentScreen--;
             showScreen(screens[currentScreen]);
           }
@@ -332,7 +488,6 @@
           } else {
             // Swipe right - previous screen
             if (currentScreen > 0) {
-              playClickSound();
               currentScreen--;
               showScreen(screens[currentScreen]);
             }
