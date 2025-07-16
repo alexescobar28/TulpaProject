@@ -55,6 +55,11 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  height: 430px;
+}
+.audio-controls {
+  padding: 0px;
+  margin: 0px;
 }
 
 .chocolate-image {
@@ -75,21 +80,20 @@ h1 {
 h2 {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 2px;
   color: #3d2817;
 }
 
 .step-number {
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   opacity: 0.8;
 }
 
 p {
   font-size: 16px;
   line-height: 1.6;
-  margin-bottom: 20px;
   text-align: left;
 }
 
@@ -111,6 +115,7 @@ p {
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
   text-transform: none;
+  margin-top: 2px;
 }
 
 .button:hover {
@@ -126,7 +131,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .nav-button {
